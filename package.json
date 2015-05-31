@@ -1,0 +1,30 @@
+{
+  "name": "generator-node-api-wrapper",
+  "version": "0.1.0",
+  "description": "API wrapper boilerplate for Node.js",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "jellekralt/generator-node-api-wrapper",
+  "author": {
+    "name": "Jelle Kralt",
+    "email": "jelle@jellekralt.nl",
+    "url": "https://github.com/jellekralt"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.19.0",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
