@@ -41,6 +41,9 @@ module.exports = yeoman.generators.Base.extend({
     },{
       type: 'list',
       name: 'authType',
+      when: function(props) {
+        return props.addAuth;
+      },
       message: 'What method of authentication does this API use?',
       choices: [
         {
@@ -76,6 +79,11 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('bower.json'),
         this.props
       );
+      this.fs.copy(
+        this.templatePath('lib/main.js'),
+        this.destinationPath('lib/'+ this.props.packageName +'.js'),
+        this.props
+      )
     },
 
     projectfiles: function () {
