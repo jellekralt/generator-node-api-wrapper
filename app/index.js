@@ -29,6 +29,11 @@ module.exports = yeoman.generators.Base.extend({
         return 'node-' + slugify(props.apiName);
       }
     },{
+      type: 'input',
+      name: 'apiUrl',
+      message: 'What is the (production) domain for the API?',
+      default: 'api.example.com'
+    },{
       type: 'confirm',
       name: 'addServices',
       message: 'Would you like to split up the API methods in separate \'services\' files?',
@@ -60,8 +65,10 @@ module.exports = yeoman.generators.Base.extend({
       this.props = props;
 
       this.props.packageName = slugify(props.name);
-
-      // To access props later use this.props.someOption;
+      this.props.apiUrl = props.apiUrl;
+      this.props.addServices = props.addServices;
+      this.props.addAuth = props.addAuth;
+      this.props.authType = props.authType || '';
 
       done();
     }.bind(this));
@@ -79,7 +86,7 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('bower.json'),
         this.props
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('lib/main.js'),
         this.destinationPath('lib/'+ this.props.packageName +'.js'),
         this.props
